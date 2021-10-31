@@ -1,0 +1,9 @@
+{
+  "name": "ExtremeCodeOS",
+  "version": "1.0.0",
+  "description": "New gen. Linux",
+  "homepage": "https://github.com/extremecodetv/ExtremeCodeOS",
+  "author": {
+    "name": "Linus Torvalds"
+  }
+}
