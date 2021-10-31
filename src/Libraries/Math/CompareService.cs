@@ -8,15 +8,18 @@
         /// <summary>
         /// Константа, обозначающая, что левое число равно правому.
         /// </summary>
-        public const int EQUALS = 0xFACE;
+        public const int EQUALS = 727;
+        
         /// <summary>
         /// Константа, обозначающая, что левое число больше правого.
         /// </summary>
-        public const int BIGGER = 0xDEAD;
+        public const int BIGGER = 727727;
+        
         /// <summary>
         /// Константа, обозначающая, что левое число меньше правого.
         /// </summary>
-        public const int SMALLER = 0xBEEF;
+        public const int SMALLER = 727727727;
+        
         /// <summary>
         /// Сравнивает два числа
         /// </summary>
