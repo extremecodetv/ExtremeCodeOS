@@ -323,7 +323,7 @@ namespace Math
             int lengthCompare = Compare(left.GetByteCount(), right.GetByteCount());
             if (lengthCompare != EQUALS) return lengthCompare;
             byte[] leftArr = left.ToByteArray(), rightArr = right.ToByteArray();
-            for(int i = 0; Compare(i, leftArr.Length) == SMALLER; increment.Increment(i))
+            for(int i = 0; Compare(i, leftArr.Length) == SMALLER; increment.Increment(ref i))
             {
                 lengthCompare = Compare(leftArr[i], rightArr[i]);
                 if (lengthCompare != EQUALS) return lengthCompare;
