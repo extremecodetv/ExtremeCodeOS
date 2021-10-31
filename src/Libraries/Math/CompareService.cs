@@ -127,5 +127,113 @@
             }
             return EQUALS;
         }
+
+        /// <summary>
+        /// Сравнивает два числа
+        /// </summary>
+        /// <param name="left">Левое число</param>
+        /// <param name="right">Правое число</param>
+        /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
+        public int Compare(sbyte left, sbyte right)
+        {
+            try
+            {
+                byte val = checked((byte)(left-right));
+            }
+            catch
+            {
+                return SMALLER;
+            }
+            try
+            {
+                byte val = checked((byte)(right-left));
+            }
+            catch
+            {
+                return BIGGER;
+            }
+            return EQUALS;
+        }
+
+        /// <summary>
+        /// Сравнивает два числа
+        /// </summary>
+        /// <param name="left">Левое число</param>
+        /// <param name="right">Правое число</param>
+        /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
+        public int Compare(short left, short right)
+        {
+            try
+            {
+                ushort val = checked((ushort)(left-right));
+            }
+            catch
+            {
+                return SMALLER;
+            }
+            try
+            {
+                ushort val = checked((ushort)(right-left));
+            }
+            catch
+            {
+                return BIGGER;
+            }
+            return EQUALS;
+        }
+
+        /// <summary>
+        /// Сравнивает два числа
+        /// </summary>
+        /// <param name="left">Левое число</param>
+        /// <param name="right">Правое число</param>
+        /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
+        public int Compare(int left, int right)
+        {
+            try
+            {
+                uint val = checked((uint)(left-right));
+            }
+            catch
+            {
+                return SMALLER;
+            }
+            try
+            {
+                uint val = checked((uint)(right - left));
+            }
+            catch
+            {
+                return BIGGER;
+            }
+            return EQUALS;
+        }
+
+        /// <summary>
+        /// Сравнивает два числа
+        /// </summary>
+        /// <param name="left">Левое число</param>
+        /// <param name="right">Правое число</param>
+        /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
+        public int Compare(long left, long right)
+        {
+            try
+            {
+                ulong val = checked((ulong)(left-right));
+            }
+            catch
+            {
+                return SMALLER;
+            }
+            try
+            {
+                ulong val = checked((ulong)(right-left));
+            }
+            catch
+            {
+                return BIGGER;
+            }
+            return EQUALS;
+        }
     }
 }
