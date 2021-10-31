@@ -53,3 +53,6 @@
 ## Видео-обзор концепции
 
 [![Видео](https://raw.githubusercontent.com/extremecodetv/ExtremeCodeOS/main/yt-preview.jpg)](https://youtu.be/Xza8cl4iR3A "Linux нового поколения ")
+
+### Балдёжная визиточка нашей самой лучшей операционной системы в мире
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=extremecodetv&repo=extremecodeos&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)](https://github.com/extremecodetv/ExtremeCodeOS)                      
