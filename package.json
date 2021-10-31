@@ -5,5 +5,8 @@
   "homepage": "https://github.com/extremecodetv/ExtremeCodeOS",
   "author": {
     "name": "Linus Torvalds"
+  },
+  "scripts": {
+    "yobkiy": "npx create-react-app my-app" 
   }
 }
