@@ -8,12 +8,17 @@ namespace Math
     public class CompareService
     {
         NegateService negate;
-
+        IncrementService increment;
         /// <summary>
         /// Создаёт новый экземпляр сервиса сравнений чисел.
         /// </summary>
-        /// <param name="negate">Сервис инверсий чисел</param>
-        public CompareService(NegateService negate) => this.negate = negate;
+        /// <param name="increment">Сервис инкремента</param>
+        /// <param name="negate">Сервис инверсии</param>
+        public CompareService(IncrementService increment, NegateService negate)
+        {
+            this.increment = increment;
+            this.negate = negate;
+        }
 
         /// <summary>
         /// Константа, обозначающая, что левое число равно правому.
@@ -308,7 +313,7 @@ namespace Math
                     -1 => SMALLER,
                     _ => EQUALS,
                 };
-            if (left.Sign != right.Sign) return Compare(left, BigInteger.Zero);
+            if (Compare(left.Sign, right.Sign) != EQUALS) return Compare(left, BigInteger.Zero);
             if(left.Sign == -1)
             {
                 negate.Negate(ref left);
@@ -318,7 +323,7 @@ namespace Math
             int lengthCompare = Compare(left.GetByteCount(), right.GetByteCount());
             if (lengthCompare != EQUALS) return lengthCompare;
             byte[] leftArr = left.ToByteArray(), rightArr = right.ToByteArray();
-            for(int i = 0; i < leftArr.Length; i++)
+            for(int i = 0; Compare(i, leftArr.Length) == SMALLER; increment.Increment(i))
             {
                 lengthCompare = Compare(leftArr[i], rightArr[i]);
                 if (lengthCompare != EQUALS) return lengthCompare;
