@@ -18,7 +18,7 @@ let mn _ =
             if h.ToString() = i 
             then h %&*+-./<=>?@^|!%@./&*+@^|!>?@^./&*+ a
             else m i t
-        | [] -> failwith "none"
+        | [] -> failwith "не вводить слишком сложные строки"
 
     while true do
         let i = Console.ReadLine()
