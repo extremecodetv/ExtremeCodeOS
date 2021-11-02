@@ -1,4 +1,6 @@
-﻿open System
+//легаси
+
+open System
 
 //Драйвер для обработки ввода с клавиатуры
 
@@ -9,7 +11,6 @@ let (|``String is "b"``|_|) s = if s = "b" then Some s else None
 let (|``String is "c"``|_|) s = if s = "c" then Some s else None
 // TODO: Написать через 16 релизов модуль ОС для генерации кода для всех строк
 
-[<EntryPoint>]
 let main argv =
     while true do
         let input = Console.ReadLine()
