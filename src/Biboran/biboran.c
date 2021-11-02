@@ -13,6 +13,16 @@ typedef char* _string;
 #endif
 
 
+// Init main window.
+GtkWidget* main_window_init(int _w, int _h, _string title) {
+    static GtkWidget* win;
+    win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title(GTK_WINDOW (win), title);
+    gtk_window_set_default_size(GTK_WINDOW (win), _w, _h);
+    gtk_window_set_position(GTK_WINDOW (win), GTK_WIN_POS_CENTER);
+    return win;
+}
+
 // Default function to create GDK pixbuffers from files.
 GdkPixbuf* create_pixbuf_from_file(const gchar* filename) {
     GdkPixbuf* pixbuf;
@@ -47,15 +57,11 @@ GtkWidget* init_frame_with_shadow(_string label, GtkWidget* container) {
 
 int main(int argc, char** argv) {
 
-    // Declare main window and init the gtk itself.
-    GtkWidget* win;
+    // Init main window and the gtk itself.
     gtk_init(&argc, &argv);
 
-    // Init main window.
-    win = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW (win), "Biboran");
-    gtk_window_set_default_size(GTK_WINDOW (win), _W, _H);
-    gtk_window_set_position(GTK_WINDOW (win), GTK_WIN_POS_CENTER);
+    GtkWidget* win;
+    win = main_window_init(_W, _H, "Biboran");
 
     g_signal_connect(win, "destroy",
             G_CALLBACK (gtk_main_quit), NULL);
@@ -66,10 +72,6 @@ int main(int argc, char** argv) {
     gtk_window_set_icon(GTK_WINDOW (win), icon);
     g_object_unref(icon);
 
-    // Main frame init.
-    //GtkWidget* main_frame;
-    //main_frame = init_frame_with_shadow("Александр Гаврилович Абдуллов", win);
-
     // Main Vbox init.
     GtkWidget* main_vbox;
     main_vbox = gtk_vbox_new(FALSE, 1);
@@ -79,13 +81,11 @@ int main(int argc, char** argv) {
     GtkWidget* top_frame;
     top_frame = init_frame_with_shadow("# Кара вечная #", main_vbox);
 
-
     // Abdul'
     GtkWidget* abdul;
     abdul = gtk_image_new_from_file("res/abdul.png");
     gtk_widget_show(abdul);
     gtk_container_add(GTK_CONTAINER (top_frame), abdul);
-
 
     //Bot frame init.
     GtkWidget* bot_frame;
@@ -97,7 +97,6 @@ int main(int argc, char** argv) {
     gtk_widget_show(sub_vbox);
     gtk_container_add(GTK_CONTAINER (bot_frame), sub_vbox);
     
-
     init_and_pack_button(sub_vbox, "ЧИТАТЬ");
 
     // Show main window.
@@ -107,3 +106,4 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
