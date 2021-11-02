@@ -32,6 +32,15 @@ typedef char* _string;
         fclose(file);\
     } while(0)
 
+// Destroy widget macro.
+#define __DESTROY(widget)\
+    do {\
+        g_signal_connect(widget,\
+                        "destroy",\
+                        G_CALLBACK (widget_destroy),\
+                        NULL);\
+    } while(0)
+
 
 // Get content from some file and write it to buffer.
 _string get_buffer_from_file(_string filename) {
@@ -108,10 +117,10 @@ void window_set_icon(GtkWidget* window, const gchar* filename) {
 }
 
 // Destroy callback function for read window.
-void read_window_destroy(GtkWidget* p_wid, gpointer _) {
+void widget_destroy(GtkWidget* p_wid, gpointer _) {
     gtk_widget_destroy(p_wid);
 #ifdef DEBUG
-    fprintf(stdout, "[read_window_destroy] function call.\n");
+    fprintf(stdout, "[widget_destroy] function call.\n");
 #endif
 }
 
@@ -123,11 +132,10 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
     GtkWidget* scrolled_read = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_show(scrolled_read);
 
+
     // When window is closed destroy it's widget.
-    g_signal_connect(read_win,
-                     "destroy",
-                     G_CALLBACK(read_window_destroy),
-                     NULL);
+    __DESTROY(read_win);
+    __DESTROY(scrolled_read);
     
     window_set_icon(read_win, _ICON);
 
@@ -135,6 +143,7 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
     buffer = get_buffer_from_file(_BIBORAN);
 #ifdef DEBUG
     fprintf(stdout, "%s\n", buffer);
+    fprintf(stdout, "%d %d\n", strlen(buffer), sizeof(buffer));
 #endif
 
     GtkTextBuffer* content;
@@ -145,9 +154,14 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
     text_area = gtk_text_view_new_with_buffer(content);
     gtk_widget_show_all(text_area);
 
+    __DESTROY(text_area);
+
+
     GtkWidget* read_frame;
     read_frame = gtk_frame_new("Анша Абдуль!");
     gtk_widget_show(read_frame);
+
+    __DESTROY(read_frame);
 
     gtk_container_add(GTK_CONTAINER (read_win),
                      scrolled_read);
@@ -157,6 +171,7 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
                      text_area);
 
     gtk_widget_show_all(read_win);
+    free(buffer);
 }
 
 // Initialise button with label and pack it to the general box.
