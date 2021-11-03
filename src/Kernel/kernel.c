@@ -11,10 +11,7 @@
 "|  __\\ \\/ / __| '__/ _ \\ '_ ` _ \\ / _ \\ |    / _ \\ / _` |/ _ \\| | | |`--. \\\n"\
 "| |___>  <| |_| | |  __/ | | | | |  __/ \\__/\\ (_) | (_| |  __/\\ \\_/ /\\__/ /\n"\
 "\\____/_/\\_\\___|_|  \\___|_| |_| |_|\\___|\\____/\\___/ \\__,_|\\___| \\___/\\____/ \n"\
-"                                terminal v0.0.1\n"\                                                                
-                                                                           
-#define COMMANDS_COUNT  4
-#define WELCOME_MSG "\n\nWelcome to ExtremeOS Terminal\n\n"
+"                                terminal v0.0.1\n"\                             
 
 static const char* commands_arr[COMMANDS_COUNT] = {
     "exit",
@@ -22,8 +19,7 @@ static const char* commands_arr[COMMANDS_COUNT] = {
     "echo",
     "clear",
     "touch",
-    "rm"
-    "clear"
+    "rm",
 };
 
 typedef enum {
@@ -38,14 +34,12 @@ typedef enum {
     C_ECHO,
     C_CLEAR,
     C_TOUCH,
-    C_RM
-    C_CLEAR
+    C_RM,
 } command_t;
 
 typedef struct {
     size_t size;
     char   input[BUFSIZE];
-    char  input[BUFSIZE];
     command_t cm;
 } terminal_req_t;
 
@@ -93,9 +87,7 @@ static req_exit_code_t terminal(terminal_req_t __req){
         break;
     default:
         return (*__req.input == '\0') ? E_EMPTY : E_UNKNOWN;
-    default:
-        return (__req.input[0] == '\0') ? E_EMPTY : E_UNKNOWN;
-    }
+}
     return E_SUCCESS;
 }
 
