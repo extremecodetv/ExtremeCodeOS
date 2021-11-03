@@ -6,7 +6,9 @@
 
 ## Компилируемые программы
 
-Games\ExtremeCodeOS runner
+ExtremeCodeOS runner <br>
+Kernel <br>
+Brainfuck <br>
 
 ## Как выполнить компиляцию?
 
@@ -17,3 +19,6 @@ Games\ExtremeCodeOS runner
 ## Как добавить свою программу?
 
 Мне лень обьеснять как. Просто посмотри в файл CompilerPoint.json и пошивилите мозгами.
+
+## ВНИМАНИЕ!!
+НЕ ПЫТАЙТЕСЬ РАЗОБРАТСЯ В ИСХОДНИКАХ (ОПАСНО ДЛЯ ПСИХИКИ!)
