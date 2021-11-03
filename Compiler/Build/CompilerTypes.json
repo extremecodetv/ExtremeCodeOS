@@ -1,0 +1,7 @@
+{
+	"gcc": {
+		"CompilCommand":"mkdir \"OS/{ProgramFolder}\" & gcc \"src/{ProgramFolder}/{MainFile}\" -O1 -o \"OS/{ProgramFolder}/{ResultFile}\""
+	}
+
+	//Mono
+}
