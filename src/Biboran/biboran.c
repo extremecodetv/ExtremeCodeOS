@@ -13,6 +13,12 @@ enum __SUB_SIZE{ _SUB_W=1000,
 #define _IMAGE   "res/abdul.png"
 #define _BIBORAN "res/biboran.txt"
 
+#ifndef BOOL
+typedef char BOOL;
+#endif
+
+BOOL __READ_OPEN = FALSE; // Won't allow to create more than one read window.
+
 #ifndef _string
 typedef char* _string;
 #endif
@@ -80,7 +86,6 @@ _string get_buffer_from_file(_string filename) {
     return buffer;
 }
 
-
 // Default function to create GDK pixbuffers from files.
 GdkPixbuf* create_pixbuf_from_file(const gchar* filename) {
     GdkPixbuf* pixbuf;
@@ -118,6 +123,7 @@ void window_set_icon(GtkWidget* window, const gchar* filename) {
 
 // Destroy callback function for read window.
 void widget_destroy(GtkWidget* p_wid, gpointer _) {
+    __READ_OPEN = FALSE;
     gtk_widget_destroy(p_wid);
 #ifdef DEBUG
     fprintf(stdout, "[widget_destroy] function call.\n");
@@ -126,6 +132,14 @@ void widget_destroy(GtkWidget* p_wid, gpointer _) {
 
 // Create read window widget.
 void read_window_create(GtkWidget* p_wid, gpointer data) {
+#ifdef DEBUG
+    fprintf(stdout, "__READ_OPEN  = %s\n", (__READ_OPEN) ? "true" : "false");
+#endif
+    // Looks like kakoy-to kostil.
+    if (__READ_OPEN)
+        return;
+    __READ_OPEN = TRUE;
+
     GtkWidget* read_win = window_init(_SUB_W,
                                       _SUB_H, 
                                       "Священный Биборан.");
@@ -151,11 +165,11 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
     gtk_text_buffer_set_text(content, buffer, -1);
 
     GtkWidget* text_area;
-    text_area = gtk_text_view_new_with_buffer(content);
+    //text_area = gtk_text_view_new_with_buffer(content);
+    text_area = gtk_label_new(buffer);
     gtk_widget_show_all(text_area);
 
     __DESTROY(text_area);
-
 
     GtkWidget* read_frame;
     read_frame = gtk_frame_new("Анша Абдуль!");
@@ -172,6 +186,9 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
 
     gtk_widget_show_all(read_win);
     free(buffer);
+#ifdef DEBUG
+    fprintf(stdout, "%d\n", sizeof(buffer));
+#endif
 }
 
 // Initialise button with label and pack it to the general box.
