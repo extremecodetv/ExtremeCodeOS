@@ -13,6 +13,6 @@ $ chmod +x compile.sh && ./compile.sh
 ```
 Или так:
 ```bash
-$ gcc biboran.c -O3 -o test `pkg-config --cflags --libs gtk+-3.0`
+$ gcc biboran.c -O3 -o biboran `pkg-config --cflags --libs gtk+-3.0`
 ```
 
