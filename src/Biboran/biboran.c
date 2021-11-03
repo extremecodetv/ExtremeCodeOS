@@ -6,7 +6,7 @@
 enum __MAIN_SIZE{ _W=500,
                   _H=500 }; // Main window size.
 
-enum __SUB_SIZE{ _SUB_W=1000,
+enum __SUB_SIZE{ _SUB_W=900,
                  _SUB_H=700 }; // Sub window size.
 
 #define _ICON    "res/icon.png"
@@ -133,26 +133,29 @@ void widget_destroy(GtkWidget* p_wid, gpointer _) {
 // Create read window widget.
 void read_window_create(GtkWidget* p_wid, gpointer data) {
 #ifdef DEBUG
-    fprintf(stdout, "__READ_OPEN  = %s\n", (__READ_OPEN) ? "true" : "false");
+    fprintf(stdout, "__READ_OPEN  = %s\n",
+            (__READ_OPEN) ? "true" : "false");
 #endif
+
     // Looks like kakoy-to kostil.
-    if (__READ_OPEN)
-        return;
+    if (__READ_OPEN) return;
     __READ_OPEN = TRUE;
 
+    // Set main and scrollable windows.
     GtkWidget* read_win = window_init(_SUB_W,
                                       _SUB_H, 
                                       "Священный Биборан.");
     GtkWidget* scrolled_read = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_show(scrolled_read);
 
-
     // When window is closed destroy it's widget.
     __DESTROY(read_win);
     __DESTROY(scrolled_read);
-    
+
+    // Default icon.
     window_set_icon(read_win, _ICON);
 
+    // Read saint Biborant to buffer.
     static _string buffer;
     buffer = get_buffer_from_file(_BIBORAN);
 #ifdef DEBUG
@@ -160,32 +163,46 @@ void read_window_create(GtkWidget* p_wid, gpointer data) {
     fprintf(stdout, "%d %d\n", strlen(buffer), sizeof(buffer));
 #endif
 
-    GtkTextBuffer* content;
-    content = gtk_text_buffer_new(NULL);
-    gtk_text_buffer_set_text(content, buffer, -1);
-
+    // Create text area label with text from buffer.
     GtkWidget* text_area;
-    //text_area = gtk_text_view_new_with_buffer(content);
     text_area = gtk_label_new(buffer);
-    gtk_widget_show_all(text_area);
+    gtk_widget_show(text_area);
 
     __DESTROY(text_area);
 
+    // Set read frame widget.
     GtkWidget* read_frame;
-    read_frame = gtk_frame_new("Анша Абдуль!");
+    read_frame = gtk_frame_new(" Анша Абдуль!");
     gtk_widget_show(read_frame);
-
+    
     __DESTROY(read_frame);
 
+    // Set grid for text.
+    GtkWidget* grid;
+    grid = gtk_grid_new();
+    gtk_widget_show(grid);
+
+    __DESTROY(grid);
+
+    // Pack widgets one by one.
     gtk_container_add(GTK_CONTAINER (read_win),
-                     scrolled_read);
+                      scrolled_read);
     gtk_container_add(GTK_CONTAINER (scrolled_read),
-                       read_frame);
+                      read_frame);
     gtk_container_add(GTK_CONTAINER (read_frame),
-                     text_area);
+                      grid);
+    gtk_grid_attach(GTK_GRID (grid),
+                    text_area,
+                    0, 0, 1, 1);
+
+    // Set text align to center.
+    gtk_widget_set_vexpand(text_area, TRUE);
+    gtk_widget_set_hexpand(text_area, TRUE);
 
     gtk_widget_show_all(read_win);
+    // Free buffer memory.
     free(buffer);
+
 #ifdef DEBUG
     fprintf(stdout, "%d\n", sizeof(buffer));
 #endif
