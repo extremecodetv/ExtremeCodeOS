@@ -12,9 +12,9 @@ namespace crypto
     public class SSC : ISSC
     {
         ///<summary>
-        /// Библиотека с криптографией
-        /// SSC - Super Secret Chiper алгоритм шифрования с синхронным ключом 
-        /// Автор - yosa12978
+        /// Библиотека с криптографией.
+        /// SSC - Super Secret Chiper алгоритм шифрования с синхронным ключом.
+        /// Автор - yosa12978, бог крипты.
         ///</summary>
         
         public SSC() {
@@ -22,10 +22,10 @@ namespace crypto
         }
 
         /// <summary>
-        /// Функция шифрования в SSC 
+        /// Функция шифрования в SSC.
         /// </summary>
-        /// <param name="key">Секретный ключ</param>
-        /// <param name="text">Текст который нужно зашифровать</param>
+        /// <param name="key">Секретный ключ.</param>
+        /// <param name="text">Текст который нужно зашифровать.</param>
         /// <returns>шифр</returns>
         public string ENCODE_SSC(string key, string text) {
             var key_b = Encoding.UTF8.GetBytes(key);
@@ -41,11 +41,11 @@ namespace crypto
         }
 
         /// <summary>
-        /// Функция дешифровки
+        /// Функция дешифровки.
         /// </summary>
-        /// <param name="key">Секретный ключ</param>
-        /// <param name="chiper">Шифр</param>
-        /// <returns>Расшифрованный текст</returns>
+        /// <param name="key">Секретный ключ.</param>
+        /// <param name="chiper">Шифр.</param>
+        /// <returns>Расшифрованный текст.</returns>
         public string DECODE_SSC(string key, string chiper) {
             var key_b = Encoding.UTF8.GetBytes(key);
             string[] chiper_s = chiper.Split(' ');
@@ -58,11 +58,11 @@ namespace crypto
         }
 
         /// <summary>
-        /// Функция Генерации ключа (де)шифровки
+        /// Функция Генерации ключа симметричного шифрования.
         /// </summary>
-        /// <returns>Секретный ключ</returns>
+        /// <returns>Секретный ключ.</returns>
         public string GET_SSC_KEY() {
-            var rand = new Random();
+            var rand = new Random(0);
             StringBuilder res = new StringBuilder();
             for(int i = 0; i < 8; i++)
             res.Append(Convert.ToString(rand.Next(9000)+1000));
