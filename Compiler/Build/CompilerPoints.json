@@ -1,0 +1,10 @@
+[
+	{
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/ExtremeCodeOS runner",
+			"MainFile":"runner.c",
+			"ResultFile":"Runner"
+		}
+	} //ExtremeCodeOS runner
+]
