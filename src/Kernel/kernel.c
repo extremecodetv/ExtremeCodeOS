@@ -3,6 +3,16 @@
 #include "stdlib.h"
 
 #define BUFSIZE 1024
+#define COMMANDS_COUNT  6
+#define WELCOME_MSG \
+" _____     _                           _____           _       _____ _____ \n"\
+"|  ___|   | |                         /  __ \\         | |     |  _  /  ___|\n"\
+"| |____  _| |_ _ __ ___ _ __ ___   ___| /  \\/ ___   __| | ___ | | | \\ `--. \n"\
+"|  __\\ \\/ / __| '__/ _ \\ '_ ` _ \\ / _ \\ |    / _ \\ / _` |/ _ \\| | | |`--. \\\n"\
+"| |___>  <| |_| | |  __/ | | | | |  __/ \\__/\\ (_) | (_| |  __/\\ \\_/ /\\__/ /\n"\
+"\\____/_/\\_\\___|_|  \\___|_| |_| |_|\\___|\\____/\\___/ \\__,_|\\___| \\___/\\____/ \n"\
+"                                terminal v0.0.1\n"\                                                                
+                                                                           
 #define COMMANDS_COUNT  4
 #define WELCOME_MSG "\n\nWelcome to ExtremeOS Terminal\n\n"
 
@@ -10,6 +20,9 @@ static const char* commands_arr[COMMANDS_COUNT] = {
     "exit",
     "ls",
     "echo",
+    "clear",
+    "touch",
+    "rm"
     "clear"
 };
 
@@ -23,11 +36,15 @@ typedef enum {
     C_EXIT,
     C_LS,
     C_ECHO,
+    C_CLEAR,
+    C_TOUCH,
+    C_RM
     C_CLEAR
 } command_t;
 
 typedef struct {
     size_t size;
+    char   input[BUFSIZE];
     char  input[BUFSIZE];
     command_t cm;
 } terminal_req_t;
@@ -47,6 +64,7 @@ static terminal_req_t get_user_input (void){
 }
 
 static req_exit_code_t terminal(terminal_req_t __req){
+    char prom[BUFSIZE];
     switch (__req.cm){
     case C_EXIT:
         exit(0);
@@ -62,6 +80,19 @@ static req_exit_code_t terminal(terminal_req_t __req){
     case C_CLEAR:
         system("cls");
         break;
+    case C_TOUCH:
+        printf("^Z to complete operation.\n");
+        strcpy(prom, "copy con ");
+        strcat (prom, __req.input + strlen(commands_arr[C_TOUCH]) + 1);
+        system(prom);
+        break;
+    case C_RM:
+        strcpy(prom, "del ");
+        strcat(prom, __req.input + strlen(commands_arr[C_RM]) + 1);
+        system(prom);
+        break;
+    default:
+        return (*__req.input == '\0') ? E_EMPTY : E_UNKNOWN;
     default:
         return (__req.input[0] == '\0') ? E_EMPTY : E_UNKNOWN;
     }

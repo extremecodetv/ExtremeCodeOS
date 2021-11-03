@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <inttypes.h>
 
 int main() {
-    int num;
+    auto uint64_t num;
     printf("\n Enter random number: ");
 
     scanf("%d", &num);
