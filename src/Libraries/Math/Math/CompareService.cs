@@ -24,17 +24,17 @@ namespace Math
         /// Константа, обозначающая, что левое число равно правому.
         /// </summary>
         public const int EQUALS = 727;
-        
+
         /// <summary>
         /// Константа, обозначающая, что левое число больше правого.
         /// </summary>
         public const int BIGGER = 727727;
-        
+
         /// <summary>
         /// Константа, обозначающая, что левое число меньше правого.
         /// </summary>
         public const int SMALLER = 727727727;
-        
+
         /// <summary>
         /// Сравнивает два числа
         /// </summary>
@@ -43,23 +43,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(byte left, byte right)
         {
+            int result = EQUALS;
             try
             {
-                byte val = checked((byte)(left-right));
+                byte val = checked((byte)(left - right));
             }
             catch
             {
-                return SMALLER;
+                result = SMALLER;
             }
-            try
+            finally
             {
-                byte val = checked((byte)(right-left));
+                try
+                {
+                    byte val = checked((byte)(right - left));
+                }
+                catch
+                {
+                    result = BIGGER;
+                }
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -70,23 +74,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(ushort left, ushort right)
         {
+            int result = EQUALS;
             try
             {
-                ushort val = checked((ushort)(left-right));
+                ushort val = checked((ushort)(left - right));
             }
             catch
             {
-                return SMALLER;
+                result = SMALLER;
             }
-            try
+            finally
             {
-                ushort val = checked((ushort)(right-left));
+                try
+                {
+                    ushort val = checked((ushort)(right - left));
+                }
+                catch
+                {
+                    result = BIGGER;
+                }
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -97,23 +105,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(uint left, uint right)
         {
+            int result = EQUALS;
             try
             {
-                uint val = checked(left-right);
+                uint val = checked(left - right);
             }
             catch
             {
-                return SMALLER;
+                result = SMALLER;
             }
-            try
+            finally
             {
-                uint val = checked(right-left);
+                try
+                {
+                    uint val = checked(right - left);
+                }
+                catch
+                {
+                    result = BIGGER;
+                }
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -124,23 +136,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(ulong left, ulong right)
         {
+            int result = EQUALS;
             try
             {
                 ulong val = checked(left-right);
             }
-            catch
-            {
-                return SMALLER;
+            catch 
+            { 
+                result = SMALLER; 
             }
-            try
-            {
-                ulong val = checked(right-left);
+            finally 
+            { 
+                try 
+                { 
+                    ulong val = checked(right-left);
+                } 
+                catch 
+                { 
+                    result = BIGGER; 
+                } 
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -151,23 +167,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(sbyte left, sbyte right)
         {
+            int result = EQUALS;
             try
             {
-                byte val = checked((byte)(left-right));
+                byte val = checked((byte)(left - right));
             }
-            catch
-            {
-                return SMALLER;
+            catch 
+            { 
+                result = SMALLER;
             }
-            try
-            {
-                byte val = checked((byte)(right-left));
+            finally
+            { 
+                try 
+                { 
+                    byte val = checked((byte)(right - left));
+                }
+                catch
+                { 
+                    result = BIGGER;
+                }
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -178,23 +198,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(short left, short right)
         {
+            int result = EQUALS;
             try
             {
-                ushort val = checked((ushort)(left-right));
+                ushort val = checked((ushort)(left - right));
             }
-            catch
+            catch 
             {
-                return SMALLER;
+                result = SMALLER; 
             }
-            try
+            finally 
             {
-                ushort val = checked((ushort)(right-left));
+                try 
+                { 
+                    ushort val = checked((ushort)(right - left));
+                } 
+                catch 
+                { 
+                    result = BIGGER; 
+                } 
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -205,23 +229,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(int left, int right)
         {
+            int result = EQUALS;
             try
             {
-                uint val = checked((uint)(left-right));
+                uint val = checked((uint)(left - right));
             }
-            catch
-            {
-                return SMALLER;
+            catch 
+            { 
+                result = SMALLER; 
             }
-            try
-            {
-                uint val = checked((uint)(right - left));
+            finally 
+            { 
+                try 
+                { 
+                    uint val = checked((uint)(right - left));
+                } 
+                catch 
+                { 
+                    result = BIGGER; 
+                } 
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -232,23 +260,27 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(long left, long right)
         {
+            int result = EQUALS;
             try
             {
-                ulong val = checked((ulong)(left-right));
+                ulong val = checked((ulong)(left - right));
             }
-            catch
-            {
-                return SMALLER;
+            catch 
+            { 
+                result = SMALLER; 
             }
-            try
-            {
-                ulong val = checked((ulong)(right-left));
+            finally 
+            { 
+                try 
+                { 
+                    ulong val = checked((ulong)(right - left));
+                } 
+                catch 
+                { 
+                    result = BIGGER; 
+                } 
             }
-            catch
-            {
-                return BIGGER;
-            }
-            return EQUALS;
+            return result;
         }
 
         /// <summary>
@@ -266,7 +298,7 @@ namespace Math
                 if (leftSign == EQUALS) return rightSign;
                 if (rightSign == EQUALS) return leftSign;
                 if (leftSign == rightSign) return leftSign;
-                if(leftSign == BIGGER) return Compare(*(int*)&left, *(int*)&right);
+                if (leftSign == BIGGER) return Compare(*(int*)&left, *(int*)&right);
                 return Compare(*(int*)&right, *(int*)&left);
             }
         }
@@ -299,7 +331,7 @@ namespace Math
         /// <returns>Одна из констант <see cref="SMALLER"/>, <see cref="BIGGER"/> или <see cref="EQUALS"/></returns>
         public int Compare(BigInteger left, BigInteger right)
         {
-            if(left.Sign == BigInteger.Zero)
+            if (left.Sign == BigInteger.Zero)
                 return right.Sign switch
                 {
                     -1 => BIGGER,
@@ -314,7 +346,7 @@ namespace Math
                     _ => EQUALS,
                 };
             if (Compare(left.Sign, right.Sign) != EQUALS) return Compare(left, BigInteger.Zero);
-            if(left.Sign == -1)
+            if (left.Sign == -1)
             {
                 negate.Negate(ref left);
                 negate.Negate(ref right);
@@ -323,7 +355,7 @@ namespace Math
             int lengthCompare = Compare(left.GetByteCount(), right.GetByteCount());
             if (lengthCompare != EQUALS) return lengthCompare;
             byte[] leftArr = left.ToByteArray(), rightArr = right.ToByteArray();
-            for(int i = 0; Compare(i, leftArr.Length) == SMALLER; increment.Increment(ref i))
+            for (int i = 0; Compare(i, leftArr.Length) == SMALLER; increment.Increment(ref i))
             {
                 lengthCompare = Compare(leftArr[i], rightArr[i]);
                 if (lengthCompare != EQUALS) return lengthCompare;
