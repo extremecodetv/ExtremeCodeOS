@@ -31,7 +31,7 @@ namespace Math
             negate.Negate(ref vl);
             increment.Increment(ref vl);
             negate.Negate(ref vl);
-            vl = (byte)val;
+            val = (byte)vl;
         }
 
         /// <summary>
@@ -115,6 +115,17 @@ namespace Math
             increment.Increment(ref vl);
             negate.Negate(ref vl);
             val = (ulong)vl;
+        }
+
+        /// <summary>
+        /// Уменьшает значение числа на единицу.
+        /// </summary>
+        /// <param name="val">Значение, которое необходимо уменьшить</param>
+        public void Decrement(ref BigInteger val)
+        {
+            negate.Negate(ref val);
+            increment.Increment(ref val);
+            negate.Negate(ref val);
         }
     }
 }
