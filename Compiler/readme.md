@@ -7,6 +7,8 @@
 ## Компилируемые программы
 
 ExtremeCodeOS runner <br>
+TicTacToe <br>
+Limpopo <br>
 Kernel <br>
 Brainfuck <br>
 
