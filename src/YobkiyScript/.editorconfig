@@ -1,0 +1,19 @@
+root = true
+
+[*]
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.cs]
+indent_size = 4
+
+[*.{xml, yml, yaml, json, proto, config, *proj, nuspec, props, resx, targets, tasks}]
+indent_size = 2
+
+[*.{ps1, psm1}]
+indent_size = 4
+
+[*.sh]
+end_of_line = lf
