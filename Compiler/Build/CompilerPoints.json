@@ -52,5 +52,5 @@
 			"MainFile":"petooh-interpreter.c",
 			"ResultFile":"pth"
 		}
-	},
+	}
 ]
