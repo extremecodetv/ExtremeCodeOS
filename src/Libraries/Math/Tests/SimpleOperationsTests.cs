@@ -331,5 +331,49 @@ namespace Tests
                 Assert.AreEqual(-1, val);
             }
         }
+
+        [TestMethod]
+        public void TestDecrementFloat()
+        {
+            var decrement = services.GetRequiredService<DecrementService>();
+            //float
+            {
+                float val = 0;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val, 1e-8);
+                val = -3;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4, val, 1e-8);
+                val = -3.75f;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4.75f, val, 1e-8);
+            }
+            //double
+            {
+                double val = 0;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val, 1e-15);
+                val = -3;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4, val, 1e-15);
+                val = -3.75f;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4.75f, val, 1e-15);
+            }
+            //decimal
+            {
+                decimal val = 0;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
+                val = -3;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4, val);
+                val = -3.75m;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-4.75m, val);
+                val = decimal.MinValue;
+                Assert.ThrowsException<OverflowException>(() => decrement.Decrement(ref val));
+            }
+        }
     }
 }
