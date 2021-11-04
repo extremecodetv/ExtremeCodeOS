@@ -2,6 +2,7 @@ using Math;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Numerics;
 
 namespace Tests
 {
@@ -26,7 +27,7 @@ namespace Tests
             {
                 byte val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = byte.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -34,7 +35,7 @@ namespace Tests
             {
                 ushort val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = ushort.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -42,7 +43,7 @@ namespace Tests
             {
                 uint val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, (uint)1);
+                Assert.AreEqual((uint)1, val);
                 val = uint.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -50,7 +51,7 @@ namespace Tests
             {
                 ulong val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, (ulong)1);
+                Assert.AreEqual((ulong)1, val);
                 val = ulong.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -64,10 +65,10 @@ namespace Tests
             {
                 sbyte val = sbyte.MinValue;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, sbyte.MinValue+1);
+                Assert.AreEqual(sbyte.MinValue + 1, val);
                 val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = sbyte.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -75,10 +76,10 @@ namespace Tests
             {
                 short val = short.MinValue;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, short.MinValue + 1);
+                Assert.AreEqual(short.MinValue + 1, val);
                 val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = short.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -86,10 +87,10 @@ namespace Tests
             {
                 int val = int.MinValue;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, int.MinValue + 1);
+                Assert.AreEqual(int.MinValue + 1, val);
                 val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = int.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
             }
@@ -97,12 +98,20 @@ namespace Tests
             {
                 long val = long.MinValue;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, long.MinValue + 1);
+                Assert.AreEqual(long.MinValue + 1, val);
                 val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = long.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
+            }
+            //BigInteger
+            {
+                BigInteger val = -1;
+                increment.Increment(ref val);
+                Assert.AreEqual(0, val);
+                increment.Increment(ref val);
+                Assert.AreEqual(1, val);
             }
         }
 
@@ -114,39 +123,212 @@ namespace Tests
             {
                 float val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val, 1e-8);
                 val = -3;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, -2);
+                Assert.AreEqual(-2, val, 1e-8);
                 val = -3.75f;
                 increment.Increment(ref val);
-                Assert.IsTrue(System.Math.Abs(val+2.75f) < 1e-8f);
+                Assert.AreEqual(-2.75f, val, 1e-8);
             }
             //double
             {
                 double val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val, 1e-15);
                 val = -3;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, -2);
+                Assert.AreEqual(-2, val, 1e-15);
                 val = -3.75f;
                 increment.Increment(ref val);
-                Assert.IsTrue(System.Math.Abs(val + 2.75f) < 1e-8f);
+                Assert.AreEqual(-2.75f, val, 1e-8);
             }
             //decimal
             {
                 decimal val = 0;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, 1);
+                Assert.AreEqual(1, val);
                 val = -3;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, -2);
+                Assert.AreEqual(-2, val);
                 val = -3.75m;
                 increment.Increment(ref val);
-                Assert.AreEqual(val, -2.75m);
+                Assert.AreEqual(-2.75m, val);
                 val = decimal.MaxValue;
                 Assert.ThrowsException<OverflowException>(() => increment.Increment(ref val));
+            }
+        }
+
+        [TestMethod]
+        public void TestInverseInteger()
+        {
+            var negate = services.GetRequiredService<NegateService>();
+            //sbyte
+            {
+                sbyte val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 12;
+                negate.Negate(ref val);
+                Assert.AreEqual(-12, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(12, val);
+            }
+            //short
+            {
+                short val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 1234;
+                negate.Negate(ref val);
+                Assert.AreEqual(-1234, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(1234, val);
+            }
+            //int
+            {
+                int val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 123456;
+                negate.Negate(ref val);
+                Assert.AreEqual(-123456, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(123456, val);
+            }
+            //long
+            {
+                long val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 9876543210;
+                negate.Negate(ref val);
+                Assert.AreEqual(-9876543210, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(9876543210, val);
+            }
+            //BigInteger
+            {
+                BigInteger val = 0, somebig = new(new byte[] { 255, 0, 0, 0, 0, 0, 0, 0, 0 });
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = somebig;
+                negate.Negate(ref val);
+                Assert.AreEqual(-somebig, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(somebig, val);
+            }
+        }
+
+        [TestMethod]
+        public void TestInverseFloat()
+        {
+            var negate = services.GetRequiredService<NegateService>();
+            //float 
+            {
+                float val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 1234.5678f;
+                negate.Negate(ref val);
+                Assert.AreEqual(-1234.5678f, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(1234.5678f, val);
+            }
+            //double
+            {
+                double val = 0;
+                negate.Negate(ref val);
+                Assert.AreEqual(0, val);
+                val = 1234.5678f;
+                negate.Negate(ref val);
+                Assert.AreEqual(-1234.5678f, val);
+                negate.Negate(ref val);
+                Assert.AreEqual(1234.5678f, val);
+            }
+        }
+
+        [TestMethod]
+        public void TestDecrementUnsigned()
+        {
+            var decrement = services.GetRequiredService<DecrementService>();
+            //byte
+            {
+                byte val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+            }
+            //ushort
+            {
+                ushort val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+            }
+            //uint
+            {
+                uint val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual<uint>(0, val);
+            }
+            //ulong
+            {
+                ulong val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual<ulong>(0, val);
+            }
+        }
+
+        [TestMethod]
+        public void TestDecrementSigned()
+        {
+            var decrement = services.GetRequiredService<DecrementService>();
+            //sbyte
+            {
+                sbyte val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
+                val = sbyte.MinValue;
+                Assert.ThrowsException<OverflowException>(() => decrement.Decrement(ref val));
+            }
+            //short
+            {
+                short val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
+                val = short.MinValue;
+                Assert.ThrowsException<OverflowException>(() => decrement.Decrement(ref val));
+            }
+            //int
+            {
+                int val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
+                val = int.MinValue;
+                Assert.ThrowsException<OverflowException>(() => decrement.Decrement(ref val));
+            }
+            //long
+            {
+                long val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
+                val = long.MinValue;
+                Assert.ThrowsException<OverflowException>(() => decrement.Decrement(ref val));
+            }
+            //BigInteger
+            {
+                BigInteger val = 1;
+                decrement.Decrement(ref val);
+                Assert.AreEqual(0, val);
+                decrement.Decrement(ref val);
+                Assert.AreEqual(-1, val);
             }
         }
     }
