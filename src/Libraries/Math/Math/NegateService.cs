@@ -71,6 +71,12 @@ namespace Math
         /// Меняет знак числа.
         /// </summary>
         /// <param name="val">Изменяемое число</param>
+        public void Negate(ref decimal val) => val = -val;
+
+        /// <summary>
+        /// Меняет знак числа.
+        /// </summary>
+        /// <param name="val">Изменяемое число</param>
         public void Negate(ref BigInteger val)
         {
             val = ~val;

@@ -121,6 +121,39 @@ namespace Math
         /// Уменьшает значение числа на единицу.
         /// </summary>
         /// <param name="val">Значение, которое необходимо уменьшить</param>
+        public void Decrement(ref float val)
+        {
+            negate.Negate(ref val);
+            increment.Increment(ref val);
+            negate.Negate(ref val);
+        }
+
+        /// <summary>
+        /// Уменьшает значение числа на единицу.
+        /// </summary>
+        /// <param name="val">Значение, которое необходимо уменьшить</param>
+        public void Decrement(ref double val)
+        {
+            negate.Negate(ref val);
+            increment.Increment(ref val);
+            negate.Negate(ref val);
+        }
+
+        /// <summary>
+        /// Уменьшает значение числа на единицу.
+        /// </summary>
+        /// <param name="val">Значение, которое необходимо уменьшить</param>
+        public void Decrement(ref decimal val)
+        {
+            negate.Negate(ref val);
+            increment.Increment(ref val);
+            negate.Negate(ref val);
+        }
+
+        /// <summary>
+        /// Уменьшает значение числа на единицу.
+        /// </summary>
+        /// <param name="val">Значение, которое необходимо уменьшить</param>
         public void Decrement(ref BigInteger val)
         {
             negate.Negate(ref val);
