@@ -1,0 +1,11 @@
+A fatal error occurred. The required library hostfxr.dll could not be found.    
+If this is a self-contained application, that library should exist in [C:\..\
+\..\..\ExtremeCodeOS\Compiler\build\].                             
+If this is a framework-dependent application, install the runtime in the global 
+location [C:\Program Files\dotnet] or use the DOTNET_ROOT environment variable t
+o specify the runtime location or register the runtime location in [HKLM\SOFTWAR
+E\dotnet\Setup\InstalledVersions\x64\InstallLocation].                          
+                                                                                
+The .NET Core runtime can be found at:                                          
+  - https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win10
+-x64                                                                            
