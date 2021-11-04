@@ -9,6 +9,24 @@
 		}
 	},
 	{
+		// Limpopo
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/Limpopo",
+			"MainFile":"limpopo.c",
+			"ResultFile":"limpopo"
+		}
+	},
+	{
+		// TicTacToe
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/TicTacToe",
+			"MainFile":"TicTacToe.c",
+			"ResultFile":"TicTacToe"
+		}
+	},
+	{
 		// Kernel
 		"CompilType":"gcc",
 		"CompilData":{
