@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 typedef long long S64;
 /* Minimal difference for the array memory reallocation. */
