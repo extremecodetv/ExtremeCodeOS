@@ -19,6 +19,10 @@ int main() {
     S64 i;
     /* Dynamic array, the only limit is memory. */
     for (i = 0; (c = getchar()) != EOF && c != '\n'; i++) {
+        if (c < '0' || c > '9') {
+            fprintf(stderr, "Bad input!\n");
+            exit(0);
+        }
         buffer[i] = c;
         if (sizeof(buffer)-i <= _MIN_DIFF) {
             _size += _DEFAULT_SIZE;
