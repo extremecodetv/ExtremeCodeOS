@@ -1,6 +1,6 @@
 /* *********************************************
  *  THIS SOFTWARE IS A PART OF ExtremeCodeOS
- *  Created by Nikita Donskov
+ *  Created by Nikita_Bunikido
  *  2021
  * 
  *  compile with gcc:

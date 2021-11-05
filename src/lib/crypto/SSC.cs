@@ -12,9 +12,7 @@ namespace crypto
     public class SSC : ISSC
     {
         ///<summary>
-        /// Библиотека с криптографией
-        /// SSC - Super Secret Chiper алгоритм шифрования с синхронным ключом 
-        /// Автор - yosa12978
+        /// SSC - Super Secure Chiper алгоритм шифрования с симметричным ключом 
         ///</summary>
         
         public SSC() {
@@ -30,14 +28,19 @@ namespace crypto
         public string ENCODE_SSC(string key, string text) {
             var key_b = Encoding.UTF8.GetBytes(key);
             var text_b = Encoding.UTF8.GetBytes(text);
-            StringBuilder res = new StringBuilder();
-            var delimiter = "";
+
+            int shift = 2;
+            int mask = 8-shift-1;
+            shift &= mask;
+
+            List<byte> res = new List<byte>();
+
             for(int i = 0; i < text_b.Length; i++) {
-                res.Append(delimiter);
-                res.Append(Convert.ToString(key_b[i%32]^text_b[i]));
-                delimiter = " ";
+                byte a = Convert.ToByte((text_b[i]>>shift) | (text_b[i]<<(-shift & mask)));
+                res.Add(Convert.ToByte(key_b[i%32]^a));
             }
-            return res.ToString();
+
+            return Convert.ToBase64String(res.ToArray());
         }
 
         /// <summary>
@@ -47,13 +50,22 @@ namespace crypto
         /// <param name="chiper">Шифр</param>
         /// <returns>Расшифрованный текст</returns>
         public string DECODE_SSC(string key, string chiper) {
+
+            byte[] cpr = Convert.FromBase64String(chiper);
+            string cpr1 = Encoding.UTF8.GetString(cpr);
             var key_b = Encoding.UTF8.GetBytes(key);
-            string[] chiper_s = chiper.Split(' ');
-            byte[] chiper_b = Array.ConvertAll(chiper_s, m => byte.Parse(m));
-            StringBuilder res = new StringBuilder();
+            byte[] chiper_b = Encoding.UTF8.GetBytes(cpr1);
+
+            int shift = 6;
+            int mask = 8-shift-1;
+            shift &= mask;
+
             List<byte> result = new List<byte>();
-            for(int i = 0; i < chiper_b.Length; i++) 
-                result.Add(Convert.ToByte(chiper_b[i]^key_b[i%32]));
+            for(int i = 0; i < chiper_b.Length; i++) {
+                byte a = Convert.ToByte(chiper_b[i]^key_b[i%key.Length]);
+                result.Add(Convert.ToByte((a>>shift) | (a<<(-shift & mask))));
+            }
+
             return Encoding.UTF8.GetString(result.ToArray());
         }
 
@@ -65,7 +77,7 @@ namespace crypto
             var rand = new Random();
             StringBuilder res = new StringBuilder();
             for(int i = 0; i < 8; i++)
-            res.Append(Convert.ToString(rand.Next(9000)+1000));
+                res.Append(Convert.ToString(rand.Next(8999)+1000));
             return res.ToString();
         }
     }
