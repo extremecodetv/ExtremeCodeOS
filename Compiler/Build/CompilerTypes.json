@@ -1,9 +1,9 @@
 {
 	"gcc": {
 		"CompilCommand":"mkdir \"OS/{ProgramFolder}\" & gcc \"src/{ProgramFolder}/{MainFile}\" -O1 -o \"OS/{ProgramFolder}/{ResultFile}\""
-	}
+	} //gcc
 
 	"mono": {
 		"CompilCommand":"mkdir \"OS/{ProgramFolder}\" & mono \"src/{ProgramFolder}/{MainFile}\" \"OS/{ProgramFolder}/{ResultFile}\""
-	}
+	} //Mono
 }
