@@ -44,4 +44,13 @@
 			"ResultFile":"inter"
 		}
 	},
+	{
+		// PETOOH
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"PETOOH",
+			"MainFile":"petooh-interpreter.c",
+			"ResultFile":"pth"
+		}
+	}
 ]
