@@ -10,6 +10,7 @@ Limpopo <br>
 Kernel <br>
 Brainfuck <br>
 PETOOH <br>
+ExtrXor <br>
 
 ## Как выполнить компиляцию?
 

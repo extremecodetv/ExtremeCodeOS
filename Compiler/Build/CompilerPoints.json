@@ -52,5 +52,14 @@
 			"MainFile":"petooh-interpreter.c",
 			"ResultFile":"pth"
 		}
+	},
+	{
+		// EXTRXOR
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"lib/XOR_crypto",
+			"MainFile":"EXTRXOR.c",
+			"ResultFile":"extrxor"
+		}
 	}
 ]
