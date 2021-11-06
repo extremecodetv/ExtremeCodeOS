@@ -3,7 +3,7 @@
 #include "stdlib.h"
 
 #define BUFSIZE 1024
-#define COMMANDS_COUNT  6
+#define COMMANDS_COUNT  7
 #define WELCOME_MSG \
 " _____     _                           _____           _       _____ _____ \n"\
 "|  ___|   | |                         /  __ \\         | |     |  _  /  ___|\n"\
@@ -20,6 +20,7 @@ static const char* commands_arr[COMMANDS_COUNT] = {
     "clear",
     "touch",
     "rm",
+    "neofetch",
 };
 
 typedef enum {
@@ -35,6 +36,7 @@ typedef enum {
     C_CLEAR,
     C_TOUCH,
     C_RM,
+    C_NEOFETCH,
 } command_t;
 
 typedef struct {
@@ -59,6 +61,8 @@ static terminal_req_t get_user_input (void){
 
 static req_exit_code_t terminal(terminal_req_t __req){
     char prom[BUFSIZE];
+    FILE* info;
+    FILE* file;
     switch (__req.cm){
     case C_EXIT:
         exit(0);
@@ -76,27 +80,35 @@ static req_exit_code_t terminal(terminal_req_t __req){
         break;
     case C_TOUCH:
         printf("^Z to complete operation.\n");
-        strcpy(prom, "copy con ");
+        strcpy(prom, "copy con area\\");
         strcat (prom, __req.input + strlen(commands_arr[C_TOUCH]) + 1);
         system(prom);
         break;
     case C_RM:
-        strcpy(prom, "del ");
+        strcpy(prom, "del area\\");
         strcat(prom, __req.input + strlen(commands_arr[C_RM]) + 1);
         system(prom);
         break;
+    case C_NEOFETCH:
+        info = fopen("res\\about.txt", "r");
+        for(int i = 0, c = 0; (c = fgetc(info)) != EOF; ++i)
+            putchar(c);
+        fclose(info);
+        putchar(0xA);
+        break;
     default:
         return (*__req.input == '\0') ? E_EMPTY : E_UNKNOWN;
-}
+    }
     return E_SUCCESS;
 }
 
 int main(int argc, char** argv){
    printf(WELCOME_MSG);
+   system("cd area");
    terminal_req_t rq = {0};
 
     for (;;) {
-        printf ("C:/home/dekstop $ ");
+        printf ("area/: ~$ ");
         
         rq = get_user_input();
         switch (terminal(rq)) {
