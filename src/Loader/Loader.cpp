@@ -17,13 +17,10 @@ void LogIn()
     string userPass;
 
     while (true) {
-        //printf("Please enter user name:");
-        //cin >> userName;
-        //printf("Please enter password:");
-        //cin >> userPass;
-
-        userName = "admin";
-        userPass = "admin";
+        printf("Please enter user name:");
+        cin >> userName;
+        printf("Please enter password:");
+        cin >> userPass;
 
         for (int i = 0; i < programData.accountsCount; i++) {
             if (programData.accounts[i].Name == userName and programData.accounts[i].TestPass(userPass)) {
