@@ -1,0 +1,22 @@
+                              New gen.
+                              --------------
+          ..                  OS: ExtremeCodeOS v1.0.0 Yobkiy
+       .+#%%*=                Kernel: ExtremeCodeOS kernel
+      .#@@@@@%^     ^*=       Uptime: 15 mins
+      *@@@##@@%-   -%@%+      Packages: 0 (dpkg) 1 (flatpack)
+     :%@@*. :@@^   ^@@@%-     Shell: bash
+     =@@@^@= #@^ .=%@@@@#.    Resolution: 1920x1080
+    .+@@@^--:%@^+#%@@@@@@^    DE: GNOME
+  .=+=#@@@=-%@@%@@@@@@@@@%:   Theme: Yobkiy
+  ==+++@@@@@@@@@@@@@@@@@@@=   Icons: Yobkiy
+  .+=+=*@@@@@@@@@@@@@@@@@@^   Terminal: ExtremeCodeOS terminal v0.0.1
+   .=+++%@@@@@@@@@@@@@@@@@*   CPU: AMD Bulldozer (0.3 x 0.002 Ghz)
+       -%@@@@@@@@@@@@@@@@@*   RAM: 5Kb
+       #@@@@@@@@@@@@@@@@@@+   GPU: Nvidia Geforce RTX 3080
+      +@@@@@@@@@@@@@@@@@#.    
+      -%@@@@@@@@@@@@@@@#:     
+       ^@@@@@@@@@@@@@%^.      
+       .#@@@@@@@@@@%*-        
+        :*@@@@@@@%*-          
+          =^##*^=:            
+                              KONEC EPTA!
