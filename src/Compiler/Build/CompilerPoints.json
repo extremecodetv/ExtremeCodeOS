@@ -1,0 +1,56 @@
+[
+	{
+		// ExtremeCodeOS runner
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/ExtremeCodeOS runner",
+			"MainFile":"runner.c",
+			"ResultFile":"Runner"
+		}
+	},
+	{
+		// Limpopo
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/Limpopo",
+			"MainFile":"limpopo.c",
+			"ResultFile":"limpopo"
+		}
+	},
+	{
+		// TicTacToe
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Games/TicTacToe",
+			"MainFile":"TicTacToe.c",
+			"ResultFile":"TicTacToe"
+		}
+	},
+	{
+		// Kernel
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"Kernel",
+			"MainFile":"kernel.c",
+			"ResultFile":"kernel"
+		}
+	},
+	{
+		// brainfuck
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"brainfuck",
+			"MainFile":"inter.c",
+			"ResultFile":"inter"
+		}
+	},
+	{
+		// PETOOH
+		"CompilType":"gcc",
+		"CompilData":{
+			"ProgramFolder":"PETOOH",
+			"MainFile":"petooh-interpreter.c",
+			"ResultFile":"pth"
+		}
+	}
+]
