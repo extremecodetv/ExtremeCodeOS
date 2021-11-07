@@ -1,0 +1,13 @@
+Доступные команды:
+
+cd
+ls
+exit
+getenv
+setenv
+mkdir
+rm
+clear
+cat
+touch
+echo
