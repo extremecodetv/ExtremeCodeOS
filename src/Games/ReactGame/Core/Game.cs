@@ -1,46 +1,79 @@
-﻿namespace ReactGame.Core;
+﻿using System.Diagnostics;
+
+namespace ReactGame.Core;
 
 public class Game : Menu
 {
     private Random _random;
+    private int _goals;
 
     public Game()
     {
         _random = new Random();
     }
 
+    /// <summary>
+    /// Цикл отрисовки игры
+    /// </summary>
     public override void Draw()
     {
+        while (true)
+        {
+            if (!Update()) break;
+        }
         
+        // Exit logic
     }
 
-    private void Update()
+    /// <summary>
+    /// Отрисовывает один кадр игры
+    /// </summary>
+    /// <returns>Продолжать ли игру?</returns>
+    private bool Update()
     {
         Console.Clear();
-        
-        WritingText("ReactGame\n\n", 0.2f, ConsoleColor.Cyan);
-        
-        DrawSection();
+
+        int targetBlock = DrawSection();
+        var stopWatch = new Stopwatch();
+
+        stopWatch.Start();
+
+        string? rawUserInput = Console.ReadLine();
+        if (rawUserInput == "exit") return false;
+
+        bool inputIsWrong = !int.TryParse(rawUserInput, out var userInput);
+
+        stopWatch.Stop();
+
+        if (stopWatch.ElapsedMilliseconds > 5000)
+        {
+            WriteText("Время вышло!");
+            Thread.Sleep(1000);
+
+            return true;
+        }
+
+        if (inputIsWrong || userInput != targetBlock)
+        {
+            WriteText("Неверный ответ");
+
+            return true;
+        }
+            
+        _goals++;
+
+        return true;
     }
 
-    private void DrawNumbers(int leftCount, int rightCount)
-    {
-        for (int i = 1; i <= leftCount + rightCount + 1; i++)
-        {
-            WriteText(i.ToString(), ConsoleColor.White);
-        }
-    }
     /// <summary>
     /// Рисует секцию блоков
     /// </summary>
     /// <returns>Номер целевого блока слева направо</returns>
     private int DrawSection()
     {
-        int leftCount = _random.Next(10);
-        int rightCount = _random.Next(10);
+        int leftCount = _random.Next(7);
+        int rightCount = _random.Next(7);
 
-        DrawNumbers(leftCount, rightCount);
-        
         int targetBlock = -1;
 
         for (int i = 0; i <= leftCount; i++)
@@ -77,17 +110,19 @@ public class Game : Menu
             switch (symbol)
             {
                 case 0:
-                    WriteText("=");
+                    WriteText("= ");
                     break;
                 case 1:
-                    WriteText("+");
+                    WriteText("+ ");
                     break;
                 case 2:
-                    WriteText("-");
+                    WriteText("- ");
                     break;
             }
         }
 
+        Console.Write("\n\n");
+        
         return targetBlock;
     }
 }

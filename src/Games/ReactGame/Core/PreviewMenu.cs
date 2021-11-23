@@ -16,11 +16,22 @@ public class PreviewMenu : Menu
 
         string? userInput = Console.ReadLine();
 
-        if (userInput == null) throw new NullReferenceException();
-        if (userInput is not ("y" and "Y" and "n" and "N")) PoshlaNahui();
-        if (userInput is not ("n" and "N")) Program.Game.Draw();
-        
-        NoNotAllowed();
+        switch (userInput)
+        {
+            case null:
+                throw new NullReferenceException();
+            case "n":
+            case "N":
+                NoNotAllowed();
+                break;
+            case "y":
+            case "Y":
+                Program.Game.Draw();
+                break;
+            default:
+                PoshlaNahui();
+                break;
+        }
     }
 
     /// <summary>
