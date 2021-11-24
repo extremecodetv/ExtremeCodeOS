@@ -13,56 +13,50 @@ public class Game : Menu
     }
 
     /// <summary>
-    /// Цикл отрисовки игры
+    /// Бесконечный цикл отрисовки кадров
     /// </summary>
     public override void Draw()
     {
         while (true)
         {
-            if (!Update()) break;
-        }
-        
-        // Exit logic
-    }
+            Console.Clear();
 
-    /// <summary>
-    /// Отрисовывает один кадр игры
-    /// </summary>
-    /// <returns>Продолжать ли игру?</returns>
-    private bool Update()
-    {
-        Console.Clear();
+            int targetBlock = DrawSection();
+            var stopWatch = new Stopwatch();
 
-        int targetBlock = DrawSection();
-        var stopWatch = new Stopwatch();
+            stopWatch.Start();
 
-        stopWatch.Start();
-
-        string? rawUserInput = Console.ReadLine();
-        if (rawUserInput == "exit") return false;
-
-        bool inputIsWrong = !int.TryParse(rawUserInput, out var userInput);
-
-        stopWatch.Stop();
-
-        if (stopWatch.ElapsedMilliseconds > 5000)
-        {
-            WriteText("Время вышло!");
-            Thread.Sleep(1000);
-
-            return true;
-        }
-
-        if (inputIsWrong || userInput != targetBlock)
-        {
-            WriteText("Неверный ответ");
-
-            return true;
-        }
+            string? userInput = Console.ReadLine();
+            int.TryParse(userInput, out var inputNumber);
             
-        _goals++;
+            if (userInput == "exit")
+            {
+                WriteText("\nВыход из игры...", ConsoleColor.Yellow);
+                Thread.Sleep(1000);
 
-        return true;
+                break;
+            }
+
+            stopWatch.Stop();
+
+            if (stopWatch.ElapsedMilliseconds > 5000 / ((int)Program.Difficulty / 2))
+            {
+                WriteText("\nВремя вышло!", ConsoleColor.Red);
+                Thread.Sleep(1000);
+
+                break;
+            }
+
+            if (inputNumber != targetBlock)
+            {
+                WriteText("\nНеверный ответ", ConsoleColor.Red);
+                Thread.Sleep(1000);
+
+                break;
+            }
+
+            _goals++;
+        }
     }
 
     /// <summary>
@@ -71,11 +65,13 @@ public class Game : Menu
     /// <returns>Номер целевого блока слева направо</returns>
     private int DrawSection()
     {
-        int leftCount = _random.Next(7);
-        int rightCount = _random.Next(7);
+        int leftCount = _random.Next(4 * (int) Program.Difficulty);
+        int rightCount = _random.Next(4 * (int) Program.Difficulty);
 
         int targetBlock = -1;
 
+        WriteText($"Текущее количество очков: {_goals}.\n", ConsoleColor.Blue);
+        
         for (int i = 0; i <= leftCount; i++)
         {
             if (i == leftCount)
