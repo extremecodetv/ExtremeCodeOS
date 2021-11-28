@@ -1,0 +1,17 @@
+﻿<Window x:Class="BullsAndCows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BullsAndCows"
+        mc:Ignorable="d"
+        Title="Быки и коровы" Height="310" Width="300" MaxHeight="310" MaxWidth="300">
+    <Grid Background="Gray" Height="284" VerticalAlignment="Bottom">
+        <TextBox x:Name="History" Margin="155,20,5,10" IsReadOnly="True" Background="DarkGray" BorderBrush="Transparent" FontSize="16" VerticalScrollBarVisibility="Visible"/>
+        <Button Content="Новая игра" Margin="10,224,150,26" BorderBrush="Transparent" FontSize="16" Click="NewGame"/>
+        <Button Content="Сделать ход" Margin="10,184,150,65" BorderBrush="Transparent" FontSize="16" Click="Step"/>
+        <TextBox x:Name="InputBox" Margin="11,36,150,222" BorderBrush="Transparent" MaxLength="4" FontSize="16"/>
+        <Label x:Name="Cow" Content="Коровы: 0" Margin="11,89,181,164" FontSize="16"/>
+        <Label x:Name="Bull" Content="Быки: 0" Margin="11,125,181,125" FontSize="16"/>
+    </Grid>
+</Window>
