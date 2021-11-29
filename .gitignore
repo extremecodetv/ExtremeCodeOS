@@ -4,3 +4,4 @@ obj/
 .vs/
 target/
 *.swp
+src/Compiler/Build/Compiler.exe
