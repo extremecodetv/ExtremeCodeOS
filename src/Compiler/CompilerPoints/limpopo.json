@@ -1,0 +1,14 @@
+{
+    "ProgramName": "limpopo",
+    "MinimumCompiledPoints": 1,
+    "Points": {
+        "main": {
+            "CompilType": "gcc",
+            "CompilData": {
+              "ProgramFolder": "Games/Limpopo",
+              "MainFile": "limpopo.c",
+              "ResultFile": "limpopo"
+            }
+        }
+    }
+}

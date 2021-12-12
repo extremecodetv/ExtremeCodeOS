@@ -1,0 +1,14 @@
+{
+    "ProgramName": "Kernel",
+    "MinimumCompiledPoints": 1,
+    "Points": {
+        "main": {
+            "CompilType": "gcc",
+            "CompilData": {
+              "ProgramFolder": "Kernel",
+              "MainFile": "kernel.c",
+              "ResultFile": "kernel"
+            }
+        }
+    }
+}
