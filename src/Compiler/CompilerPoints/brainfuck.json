@@ -1,0 +1,14 @@
+{
+    "ProgramName": "brainfuck",
+    "MinimumCompiledPoints": 1,
+    "Points": {
+        "main": {
+            "CompilType": "gcc",
+            "CompilData": {
+              "ProgramFolder": "brainfuck",
+              "MainFile": "inter.c",
+              "ResultFile": "inter"
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "ProgramName": "TicTacToe",
+    "MinimumCompiledPoints": 1,
+    "Points": {
+        "main": {
+            "CompilType": "gcc",
+            "CompilData": {
+                "ProgramFolder": "Games/TicTacToe",
+                "MainFile": "TicTacToe.c",
+                "ResultFile": "TicTacToe"
+            }
+        }
+    }
+}

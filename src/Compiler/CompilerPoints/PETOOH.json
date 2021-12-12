@@ -1,0 +1,14 @@
+{
+    "ProgramName": "PETOOH",
+    "MinimumCompiledPoints": 1,
+    "Points": {
+        "main": {
+            "CompilType": "gcc",
+            "CompilData": {
+              "ProgramFolder": "PETOOH",
+              "MainFile": "petooh-interpreter.c",
+              "ResultFile": "pth"
+            }
+        }
+    }
+}

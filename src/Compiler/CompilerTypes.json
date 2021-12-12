@@ -1,0 +1,10 @@
+[
+	{
+		"Name": "gcc",
+		"Args": [ "ProgramFolder", "MainFile", "ResultFile" ],
+		"CompilCommands": [
+			"mkdir \"OS/{ProgramFolder}\"", 
+			"gcc \"src/{ProgramFolder}/{MainFile}\" -O1 -o \"OS/{ProgramFolder}/{ResultFile}\""
+		]
+	}
+]

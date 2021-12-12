@@ -16,17 +16,17 @@ void Log(int LogType, string FullLog, string ShortLog) {
 
 	switch (LogType)
 	{
-	case 0:
-		LogTypeString = "[Ошибка!] ";
+	case ERROR:
+		LogTypeString = "[РћС€РёР±РєР°!] ";
 		break;
-	case 1:
-		LogTypeString = "[Удачно!] ";
+	case SUCESSFULL:
+		LogTypeString = "[РЈРґР°С‡РЅРѕ!] ";
 		break;
 	}
 
 	LogFile << LogTypeString << FullLog << endl;
 
-	cout << LogTypeString << ShortLog << "\n";
+	cout << LogTypeString << ShortLog << endl;
 }
 
 void Close() {
