@@ -5,6 +5,7 @@ from tkinter import *
 import threading
 import random
 import time
+import sys
 import os
 
 
