@@ -3,7 +3,7 @@
 #include "stdlib.h"
 
 #define BUFSIZE 1024
-#define COMMANDS_COUNT  7
+#define COMMANDS_COUNT 8
 #define WELCOME_MSG \
 " _____     _                           _____           _       _____ _____ \n"\
 "|  ___|   | |                         /  __ \\         | |     |  _  /  ___|\n"\
@@ -11,7 +11,7 @@
 "|  __\\ \\/ / __| '__/ _ \\ '_ ` _ \\ / _ \\ |    / _ \\ / _` |/ _ \\| | | |`--. \\\n"\
 "| |___>  <| |_| | |  __/ | | | | |  __/ \\__/\\ (_) | (_| |  __/\\ \\_/ /\\__/ /\n"\
 "\\____/_/\\_\\___|_|  \\___|_| |_| |_|\\___|\\____/\\___/ \\__,_|\\___| \\___/\\____/ \n"\
-"                                terminal v0.0.1\n"\                             
+"                                terminal v0.0.1\n" 
 
 static const char* commands_arr[COMMANDS_COUNT] = {
     "exit",
@@ -21,6 +21,7 @@ static const char* commands_arr[COMMANDS_COUNT] = {
     "touch",
     "rm",
     "neofetch",
+    "mkdir"
 };
 
 typedef enum {
@@ -37,6 +38,7 @@ typedef enum {
     C_TOUCH,
     C_RM,
     C_NEOFETCH,
+    C_MKDIR
 } command_t;
 
 typedef struct {
@@ -55,7 +57,7 @@ static terminal_req_t get_user_input (void){
             __req.cm = i;
             break;
         }
-    
+
     return __req;
 }
 
@@ -96,6 +98,9 @@ static req_exit_code_t terminal(terminal_req_t __req){
         fclose(info);
         putchar(0xA);
         break;
+    case C_MKDIR:
+        printf("You didn't install react\n");
+        break;
     default:
         return (*__req.input == '\0') ? E_EMPTY : E_UNKNOWN;
     }
@@ -109,16 +114,15 @@ int main(int argc, char** argv){
 
     for (;;) {
         printf ("area/: ~$ ");
-        
         rq = get_user_input();
         switch (terminal(rq)) {
         case E_EMPTY:   ; break;
         case E_SUCCESS: ; break;
-        case E_UNKNOWN: 
+        case E_UNKNOWN:
             printf("terminal error: unknown command: \"%s\"\n", rq.input);
             break;
         }
-    } 
+    }
 
     return 0;
 }
