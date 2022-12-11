@@ -11,3 +11,4 @@
 - **GIMPForExtremeCodeOS** - Gimp специально для ExtremeCodeOS.
 - **gochat** - Приятный чат для ExtremeCodeOS.
 - **YobkiyIDE** - Среда разработки (IDE)
+- **DigitalClock** - Классические часы.
