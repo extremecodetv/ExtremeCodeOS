@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project FileVersion="2" Name="Yoba_Music_Player" MainFile="Yoba_Music_Player.pas" OutputFileName="Yoba_Music_Player.exe" OutputDirectory="" ProjectType="WindowsApp" IncludeDebugInfo="True" GenerateXMLDoc="True" CommandLineArguments="" AppIcon="" DeleteEXE="True" DeletePDB="True" Product="" Company="" Trademark="" Copyright="" Title="" Description="" MajorVersion="0" MinorVersion="0" BuildVersion="0" RevisionVersion="0">
+  <Items>
+    <Item Type="SourceFile" Name="Yoba_Music_Player.pas" Path="Yoba_Music_Player.pas" />
+    <Item Type="SourceFile" Name="Unit1.pas" Path="Unit1.pas" />
+    <Item Type="Reference" AssemblyName="System" FullAssemblyName="System.dll" />
+    <Item Type="Reference" AssemblyName="System.Windows.Forms" FullAssemblyName="System.Windows.Forms.dll" />
+    <Item Type="Reference" AssemblyName="System.Drawing" FullAssemblyName="System.Drawing.dll" />
+    <Item Type="Reference" AssemblyName="System.Core" FullAssemblyName="System.Core.dll" />
+    <Item Type="Reference" AssemblyName="System.Data" FullAssemblyName="System.Data.dll" />
+    <Item Type="Reference" AssemblyName="System.Data.DataSetExtensions" FullAssemblyName="System.Data.DataSetExtensions.dll" />
+    <Item Type="Reference" AssemblyName="System.Xml" FullAssemblyName="System.Xml.dll" />
+    <Item Type="Reference" AssemblyName="System.Xml.Linq" FullAssemblyName="System.Xml.Linq.dll" />
+  </Items>
+</Project>
